@@ -29,7 +29,7 @@ module.exports = function invoice(template, templateVariables, options) {
         // Use the final rendered data to create a pdf
         pdf.create(renderedData, settings.pdfOptions)
           .toFile(settings.filename, (pdfError, result) => {
-            if (pdfError) {
+            if (pdfError || result === null) {
               console.log(`Error creating PDF: ${pdfError}`)
               reject(pdfError)
             }
